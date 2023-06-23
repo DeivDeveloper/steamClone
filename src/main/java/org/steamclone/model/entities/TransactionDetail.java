@@ -1,10 +1,9 @@
-package org.steamclone.models.entities;
+package org.steamclone.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Entity
 @Getter
@@ -12,15 +11,17 @@ import java.util.List;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Business implements Serializable {
+public class TransactionDetail implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(nullable = false)
-    private String name;
+    private float price;
+
+    @ManyToOne
+    private Transaction transaction;
     @ManyToOne
     private Game game;
-    @OneToMany(mappedBy = "editor")
-    private List<Game> games;
 }

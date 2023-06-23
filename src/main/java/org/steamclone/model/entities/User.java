@@ -1,4 +1,4 @@
-package org.steamclone.models.entities;
+package org.steamclone.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -20,6 +20,7 @@ public class User implements Serializable {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
@@ -36,21 +37,24 @@ public class User implements Serializable {
     private int level;
     @Column(nullable = false)
     private String country;
+
     @OneToMany(mappedBy = "user")
     private List<Game> games;
-    @ManyToMany
-    private List<Achievement> achievements;
-    @ManyToMany
-    private List<Game> wishGames;
     @OneToMany(mappedBy = "user")
     private List<Transaction> transactions;
     @OneToMany(mappedBy = "user")
     private List<ProfileComment> profileComments;
     @OneToMany(mappedBy = "user")
     private List<PaymentMethod> paymentMethods;
+    @OneToMany(mappedBy = "user")
+    private List<Review> reviews;
+
+    @ManyToMany
+    private List<Achievement> achievements;
+    @ManyToMany
+    private List<Game> wishGames;
     @ManyToMany
     @JoinTable(name = "user_friends", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_user_id"))
     private Set<User> friends = new HashSet<>();
-
 }

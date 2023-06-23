@@ -3,7 +3,7 @@ package org.steamclone.repositories;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import org.steamclone.models.entities.Game;
+import org.steamclone.model.entities.Game;
 
 import java.util.List;
 
@@ -23,5 +23,5 @@ public interface GameRepo extends JpaRepository<Game, Integer> {
     List<Game> listGameByEditor(String nameEditor);
 
     @Query("select g from Game g join g.wishGameUsers w where w.id = :idUser")
-    List<Game> listFavoriteProduct(String idUser);
+    List<Game> listFavoriteGame(String idUser);
 }

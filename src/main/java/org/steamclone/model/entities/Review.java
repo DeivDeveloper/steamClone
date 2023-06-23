@@ -1,9 +1,10 @@
-package org.steamclone.models.entities;
+package org.steamclone.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -11,13 +12,21 @@ import java.io.Serializable;
 @NoArgsConstructor
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Tag implements Serializable {
+public class Review implements Serializable {
     @Id
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(nullable = false)
-    private String name;
+    private int puntuation;
+    @Column(nullable = false)
+    private String comment;
+    @Column(nullable = false)
+    private LocalDate dateComment;
+
     @ManyToOne
     private Game game;
+    @ManyToOne
+    private User user;
 }

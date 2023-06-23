@@ -1,4 +1,4 @@
-package org.steamclone.models.entities;
+package org.steamclone.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -19,14 +19,11 @@ public class Game implements Serializable {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private LocalDate releaseDate;
-    @OneToMany(mappedBy = "game")
-    private List<Business> developer;
-    @ManyToOne
-    private Business editor;
     @Column(nullable = false)
     private double realPrice;
     @Column(nullable = false)
@@ -37,22 +34,32 @@ public class Game implements Serializable {
     private String description;
     @Column(nullable = false)
     private String requirements;
-    @ElementCollection
-    private List<String> languages;
     @Column(nullable = false)
     private String classification;
     @Column(nullable = false)
     private String puntuation;
+
+    @ElementCollection
+    private List<String> languages;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Map<String,String> images;
+
     @OneToMany(mappedBy = "game")
     private List<Review> reviews;
     @OneToMany(mappedBy = "game")
+    private List<Tag> tags;
+    @OneToMany(mappedBy = "game")
+    private List<Business> developer;
+    @OneToMany(mappedBy = "game")
     private List<Achievement> achievements;
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Map<String,String> images;
+    @OneToMany(mappedBy = "game")
+    private List<TransactionDetail> transactionDetails;
+
     @ManyToOne
     private User user;
+    @ManyToOne
+    private Business editor;
+
     @ManyToMany(mappedBy = "wishGames")
     private List<User> wishGameUsers;
-    @OneToMany(mappedBy = "game")
-    private List<Tag> tags;
 }

@@ -1,9 +1,10 @@
-package org.steamclone.models.entities;
+package org.steamclone.model.entities;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -16,6 +17,12 @@ public class ProfileComment implements Serializable {
     @EqualsAndHashCode.Include
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(nullable = false)
+    private String comment;
+    @Column(nullable = false)
+    private LocalDate dateComment;
+
     @ManyToOne
     private User user;
 }
