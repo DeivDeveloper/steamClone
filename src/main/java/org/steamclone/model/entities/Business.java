@@ -20,10 +20,13 @@ public class Business implements Serializable {
 
     @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
+    private boolean state;
+    @Column(nullable = false)
+    private BusinessType businessType;
 
-    @OneToMany(mappedBy = "editor")
+    @ManyToMany(mappedBy = "business")
     private List<Game> games;
 
-    @ManyToOne
-    private Game game;
+
 }

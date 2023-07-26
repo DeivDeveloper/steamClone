@@ -22,6 +22,8 @@ public class Achievement implements Serializable {
     private String name;
     @Column(nullable = false)
     private String description;
+    @Column(nullable = false)
+    private boolean state;
 
     @ManyToOne
     private Game game;

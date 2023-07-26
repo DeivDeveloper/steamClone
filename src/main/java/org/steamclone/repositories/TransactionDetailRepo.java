@@ -11,4 +11,6 @@ import java.util.List;
 public interface TransactionDetailRepo extends JpaRepository<TransactionDetail, Integer> {
     @Query("select d from TransactionDetail d where d.transaction.id = :idTransaction")
     List<TransactionDetail> findByTransaction(int idTransaction);
+    @Query("select d from TransactionDetail d where d.id = :idTransactionDetail")
+    TransactionDetail getTransactionDetail(int idTransactionDetail);
 }

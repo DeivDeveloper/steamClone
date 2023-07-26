@@ -13,5 +13,5 @@ public interface PaymentMethodRepo extends JpaRepository<PaymentMethod, Integer>
     @Query("select p from PaymentMethod p where p.cardNumber = :cardNumber")
     Optional<PaymentMethod> findByCardNumber(String cardNumber);
     @Query("select p from PaymentMethod p where p.user.id = :idUser and p.state = true")
-    List<PaymentMethod> findByUser(String idUser);
+    List<PaymentMethod> findByUser(int idUser);
 }

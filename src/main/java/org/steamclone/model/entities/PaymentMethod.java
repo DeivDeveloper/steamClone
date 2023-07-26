@@ -30,8 +30,8 @@ public class PaymentMethod implements Serializable {
     private LocalDate expirationDate;
     @Column(nullable = false,length = 3)
     private int cvv;
-    @Column(nullable = false,length = 3)
-    private  boolean state;
+    @Column(nullable = false)
+    private boolean state;
 
     @OneToMany(mappedBy = "paymentMethod")
     private List<Transaction> transactions;

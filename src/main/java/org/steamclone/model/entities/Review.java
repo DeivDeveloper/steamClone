@@ -19,11 +19,13 @@ public class Review implements Serializable {
     private int id;
 
     @Column(nullable = false)
-    private int puntuation;
+    private PuntuationReview puntuation;
     @Column(nullable = false)
     private String comment;
     @Column(nullable = false)
     private LocalDate dateComment;
+    @Column(nullable = false)
+    private boolean state;
 
     @ManyToOne
     private Game game;

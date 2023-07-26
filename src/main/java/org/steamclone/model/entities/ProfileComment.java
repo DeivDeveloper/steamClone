@@ -22,7 +22,11 @@ public class ProfileComment implements Serializable {
     private String comment;
     @Column(nullable = false)
     private LocalDate dateComment;
+    @Column(nullable = false)
+    private boolean state;
 
     @ManyToOne
     private User user;
+    @ManyToOne
+    private User profileUser;
 }

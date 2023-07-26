@@ -25,11 +25,11 @@ public class Game implements Serializable {
     @Column(nullable = false)
     private LocalDate releaseDate;
     @Column(nullable = false)
-    private double realPrice;
+    private float realPrice;
     @Column(nullable = false)
-    private double price;
+    private float price;
     @Column(nullable = false, length = 3)
-    private float discount;
+    private int discount;
     @Column(nullable = false)
     private String description;
     @Column(nullable = false)
@@ -37,7 +37,9 @@ public class Game implements Serializable {
     @Column(nullable = false)
     private String classification;
     @Column(nullable = false)
-    private String puntuation;
+    private float puntuation;
+    @Column(nullable = false)
+    private boolean state;
 
     @ElementCollection
     private List<String> languages;
@@ -47,19 +49,16 @@ public class Game implements Serializable {
     @OneToMany(mappedBy = "game")
     private List<Review> reviews;
     @OneToMany(mappedBy = "game")
-    private List<Tag> tags;
-    @OneToMany(mappedBy = "game")
-    private List<Business> developer;
-    @OneToMany(mappedBy = "game")
     private List<Achievement> achievements;
     @OneToMany(mappedBy = "game")
     private List<TransactionDetail> transactionDetails;
 
-    @ManyToOne
-    private User user;
-    @ManyToOne
-    private Business editor;
-
+    @ManyToMany
+    private List<User> users;
+    @ManyToMany
+    private List<Business> business;
     @ManyToMany(mappedBy = "wishGames")
     private List<User> wishGameUsers;
+    @ManyToMany
+    private List<Tag> tags;
 }

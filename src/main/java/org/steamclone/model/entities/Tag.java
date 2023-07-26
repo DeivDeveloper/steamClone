@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Getter
@@ -20,6 +21,6 @@ public class Tag implements Serializable {
     @Column(nullable = false)
     private String name;
 
-    @ManyToOne
-    private Game game;
+    @ManyToMany(mappedBy = "tags")
+    private List<Game> games;
 }

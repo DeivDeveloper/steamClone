@@ -9,8 +9,6 @@ import java.util.List;
 
 @Repository
 public interface ProfileCommentRepo extends JpaRepository<ProfileComment, Integer> {
-    @Query("select p from ProfileComment p where p.user.nickname = :nickname")
-    List<ProfileComment> findByNickName(String nickname);
-    @Query("select p from ProfileComment p where p.dateComment = :dateComment")
-    List<ProfileComment> findByDateComment(String dateComment);
+    @Query("select p from ProfileComment p where p.profileUser.id = :idUser")
+    List<ProfileComment> listProfileCommentByIdUser(int idUser);
 }
